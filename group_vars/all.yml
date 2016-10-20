@@ -8,4 +8,4 @@
 monit_host: nagios-host
 
 ## all inventory groups in one list
-group_list: ["gszookeepers","gsmesos-masters"]
+group_list: ["web","db","vm"]
