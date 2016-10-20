@@ -19,7 +19,7 @@ ansible-playbook -i example-inventory.ini example-install-nagios.yml --tags "con
 ansible-playbook -i example-inventory.ini example-install-nagios.yml --tags "config"                                           
 ```
 
-3. By default this playbook generates in /etc/nagios/conf.d/: 
+3. By default this playbook generates config in /etc/nagios/conf.d/: 
 ---
 
 ```
