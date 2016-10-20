@@ -16,7 +16,13 @@ ansible-playbook -i example-inventory.ini example-install-nagios.yml --tags "con
 ---
 
 ```
-ansible-playbook -i example-inventory.ini example-install-nagios.yml --tags "config"                                           
+ansible-playbook -i example-inventory.ini example-install-nagios.yml --tags "config"
+```
+
+or with both: config and blockfile
+
+```
+ansible-playbook -i example-inventory.ini example-install-nagios.yml --tags "config,blockfile"                                 
 ```
 
 3. By default this playbook generates config in /etc/nagios/conf.d/: 
