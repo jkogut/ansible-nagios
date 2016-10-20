@@ -1,0 +1,31 @@
+{% for group in group_list %}
+
+define service {
+    use			    generic-service
+    hostgroup_name          {{group}}
+    service_description     NRPE Check Load
+    check_command           check_nrpe!check_load
+}
+
+define service {
+    use			    generic-service
+    hostgroup_name          {{group}}
+    service_description     NRPE Check RootFS
+    check_command           check_nrpe!check_rootfs
+}
+
+define service {
+    use			    generic-service
+    hostgroup_name          {{group}}
+    service_description     NRPE Check Zombie Procs
+    check_command           check_nrpe!check_zombie_procs
+}
+
+define service {
+    use			    generic-service
+    hostgroup_name          {{group}}
+    service_description     NRPE Check Total Procs
+    check_command           check_nrpe!check_total_procs
+}
+
+{% endfor %}

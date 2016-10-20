@@ -1,0 +1,11 @@
+---
+
+##
+## Default file for playbook
+##
+
+# global vars
+monit_host: nagios-host
+
+## all inventory groups in one list
+group_list: ["gszookeepers","gsmesos-masters"]

@@ -1,0 +1,32 @@
+---
+
+- name: Install nagios server packages
+  yum: name="{{ item }}" state=present
+  with_items:
+    - nagios
+    - nagios-plugins-nrpe
+  tags:
+    - packages
+
+- name: Fetch configs
+  template: src={{item.src}} dest={{item.dest}}
+  with_items:
+    - {src: 'hosts.cfg.j2', dest: '/etc/nagios/conf.d/hosts.cfg'}
+    - {src: 'hostgroup.cfg.j2', dest: '/etc/nagios/conf.d/hostgroups.cfg'}
+    - {src: 'service-ping-ssh.cfg.j2', dest: '/etc/nagios/conf.d/service-ping-ssh.cfg'}
+    - {src: 'service-custom-http.cfg.j2', dest: '/etc/nagios/conf.d/service-custom-http.cfg'}
+    - {src: 'service-nrpe-common.cfg.j2', dest: '/etc/nagios/conf.d/service-nrpe-common.cfg'}
+  tags:
+    - config
+
+- name: Insert Custom command defintions
+  blockinfile:
+    dest: /etc/nagios/objects/commands.cfg
+    content: |
+      define command{
+             command_name    check_nrpe
+             command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
+             }
+
+- name: Reload Nagios
+  service: name=nagios state=restarted

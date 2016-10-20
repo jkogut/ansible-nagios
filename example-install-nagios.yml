@@ -1,0 +1,18 @@
+---
+
+- hosts: mesos-mon.dmz
+  user: ansible
+  sudo: yes
+  vars_files:
+    - 'group_vars/web.yml'
+
+  roles:
+    - nagios-server
+
+    
+# - hosts: example-nagios-clients
+#   user: ansible
+#   sudo: yes
+
+#   roles:
+#     - nagios-client

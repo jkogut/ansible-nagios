@@ -1,0 +1,8 @@
+{% for group in group_list %}
+
+define hostgroup {
+       hostgroup_name  {{group}}
+       members 	       {% for server in groups[group] %}{{server}}{% if not loop.last %},{%endif%}{% endfor %}
+       
+}
+{% endfor %}

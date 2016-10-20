@@ -1,0 +1,22 @@
+---
+##
+## Example with dicts
+##
+
+## list of web dicts for jinja loop nagios template generation
+webDictList: ["{{customServiceDict}}", "{{realtimeServiceDict}}"]
+
+## dict with custom service
+customServiceDict: {
+  "scheduler": {"server_name":"web-server1","description":"Scheduler Status","port":"8772"},
+  "broker1": {"server_name":"web-server1","description":"Broker1 Status","port":"8771"},
+  "broker2": {"server_name":"web-server2","description":"Broker2 Status","port":"8771"},
+  "broker3": {"server_name":"web-server2","description":"Broker3 Status","port":"8774"}
+  }
+
+## dict with RealTime services
+realtimeServiceDict: {
+  "rt-service1": {"server_name":"web-server2","description":"RealTime Service1","port":"8773"},
+  "rt-servcie2": {"server_name":"web-server2","description":"RealTime Service2","port":"8772"},
+  "rt-service3": {"server_name":"web-server3","description":"RealTime Service3","port":"8776"}
+  }

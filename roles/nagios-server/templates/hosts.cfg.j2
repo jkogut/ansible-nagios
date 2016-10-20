@@ -1,0 +1,11 @@
+{% for group in group_list %}
+   {% for server in groups[group] %}
+
+define host{
+        use		linux-server
+	host_name       {{server}}
+	address		{{hostvars[server].ipv4}}
+}
+
+   {% endfor %}
+{% endfor %}

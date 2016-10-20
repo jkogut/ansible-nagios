@@ -1,0 +1,16 @@
+{% for group in group_list %}
+
+define service {
+    use			    generic-service
+    hostgroup_name          {{group}}
+    service_description     PING
+    check_command           check_ping!100.0,2%!400.0,10%
+}
+
+define service {
+    use			    generic-service
+    hostgroup_name          {{group}}
+    service_description     SSH
+    check_command           check_ssh
+}
+{% endfor %}

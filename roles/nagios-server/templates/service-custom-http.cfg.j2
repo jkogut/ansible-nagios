@@ -1,0 +1,11 @@
+{% for dict in webDictList %}
+   {% for server in dict %}
+
+define service {
+    use			    generic-service
+    host_name          	    {{dict[server]['server_name']}}
+    service_description     CHECK {{dict[server]['description']}}
+    check_command           check_http!-H {{dict[server]['server_name']}} -u 'http://{{dict[server]['server_name']}}/status' -p {{dict[server]['port']}}
+}
+   {% endfor %}
+{% endfor %}

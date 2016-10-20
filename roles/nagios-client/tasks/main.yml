@@ -1,0 +1,24 @@
+---
+
+- name: Install nagios client packages
+  yum: 'name="{{ item }}" state=present'
+  with_items:
+    - nrpe
+    - nagios-plugins-disk
+    - nagios-plugins-load
+    - nagios-plugins-procs
+    - openssl
+  tags:
+    - pkg
+
+- name: Fetch configuration
+  template: src=nrpe.cfg.basic.j2 dest=/etc/nagios/nrpe.cfg
+  tags:
+    - config
+
+- name: Enable NRPE Server service
+  service: name=nrpe enabled=yes
+  
+- name: Start NRPE-Server service
+  service: name=nrpe state=restarted
+  
